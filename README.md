@@ -18,3 +18,7 @@ $domainInfo = $domainApi->getInfo('domain.com');
 
 ```
 
+TransIp API documentation:
+==========================
+
+https://api.transip.nl/docs/
