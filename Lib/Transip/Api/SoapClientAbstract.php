@@ -52,17 +52,6 @@ abstract class SoapClientAbstract
                 die('<p>' . implode("</p>\n<p>", $errors) . '</p>');
             }
 
-            $classMap = array(
-                'DomainCheckResult' => 'Transip_DomainCheckResult',
-                'Domain'            => 'Transip_Domain',
-                'Nameserver'        => 'Transip_Nameserver',
-                'WhoisContact'      => 'Transip_WhoisContact',
-                'DnsEntry'          => 'Transip_DnsEntry',
-                'DomainBranding'    => 'Transip_DomainBranding',
-                'Tld'               => 'Transip_Tld',
-                'DomainAction'      => 'Transip_DomainAction',
-            );
-
             $options = array(
                 'classmap' => $classMap,
                 'encoding' => 'utf-8', // lets support unicode
