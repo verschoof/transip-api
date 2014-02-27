@@ -2,6 +2,8 @@
 
 namespace Transip;
 
+use Transip\Exception\InvalidArgumentException;
+
 class Client
 {
     /**

@@ -1,5 +1,7 @@
 <?php
 
+namespace Transip\Model;
+
 /**
  * This class models a Visitor to the Datacenter. Currently being returned
  * by ColoService::requestAccess() in an array of all visitors that are granted access.
@@ -9,7 +11,7 @@
  * @author TransIP (support@transip.nl)
  * @version 20131025 10:01
  */
-class Transip_DataCenterVisitor
+class DataCenterVisitor
 {
 	/**
 	 * The name of the visitor

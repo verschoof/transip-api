@@ -1,5 +1,7 @@
 <?php
 
+namespace Transip\Model;
+
 /**
  * Models A DnsEntry
  *
@@ -8,7 +10,7 @@
  * @author TransIP (support@transip.nl)
  * @version 20131025 10:01
  */
-class Transip_DnsEntry
+class DnsEntry
 {
 	const TYPE_A = 'A';
 	const TYPE_AAAA = 'AAAA';

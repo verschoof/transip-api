@@ -1,5 +1,7 @@
 <?php
 
+namespace Transip\Model;
+
 /**
  * Whois contact
  *
@@ -8,7 +10,7 @@
  * @author TransIP (support@transip.nl)
  * @version 20131025 10:01
  */
-class Transip_WhoisContact
+class WhoisContact
 {
 	const TYPE_REGISTRANT = 'registrant';
 	const TYPE_ADMINISTRATIVE = 'administrative';

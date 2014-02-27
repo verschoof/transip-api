@@ -37,14 +37,14 @@ class Domain extends SoapClientAbstract
     public function getSoapClient($parameters = array())
     {
         $classMap = array(
-            'DomainCheckResult' => 'Transip_DomainCheckResult',
-            'Domain'            => 'Transip_Domain',
-            'Nameserver'        => 'Transip_Nameserver',
-            'WhoisContact'      => 'Transip_WhoisContact',
-            'DnsEntry'          => 'Transip_DnsEntry',
-            'DomainBranding'    => 'Transip_DomainBranding',
-            'Tld'               => 'Transip_Tld',
-            'DomainAction'      => 'Transip_DomainAction',
+            'DomainCheckResult' => 'Transip\\Model\\DomainCheckResult',
+            'Domain'            => 'Transip\\Model\\Domain',
+            'Nameserver'        => 'Transip\\Model\\Nameserver',
+            'WhoisContact'      => 'Transip\\Model\\WhoisContact',
+            'DnsEntry'          => 'Transip\\Model\\DnsEntry',
+            'DomainBranding'    => 'Transip\\Model\\DomainBranding',
+            'Tld'               => 'Transip\\Model\\Tld',
+            'DomainAction'      => 'Transip\\Model\\DomainAction',
         );
 
         return $this->soapClient($classMap, $parameters);

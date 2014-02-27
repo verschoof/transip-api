@@ -1,5 +1,7 @@
 <?php
 
+namespace Transip\Model;
+
 /**
  * This class holds the data for one result item of a multi availability check.
  *
@@ -8,7 +10,7 @@
  * @author TransIP (support@transip.nl)
  * @version 20131025 10:01
  */
-class Transip_DomainCheckResult
+class DomainCheckResult
 {
 	const STATUS_INYOURACCOUNT = 'inyouraccount';
 	const STATUS_UNAVAILABLE = 'unavailable';

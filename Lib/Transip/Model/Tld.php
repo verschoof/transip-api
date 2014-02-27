@@ -1,5 +1,7 @@
 <?php
 
+namespace Transip\Model;
+
 /**
  * This class models a Tld and holds information such as price,
  * registration length and capabilities.
@@ -9,7 +11,7 @@
  * @author TransIP (support@transip.nl)
  * @version 20131025 10:01
  */
-class Transip_Tld
+class Tld
 {
 	const CAPABILITY_REQUIRESAUTHCODE = 'requiresAuthCode';
 	const CAPABILITY_CANREGISTER = 'canRegister';

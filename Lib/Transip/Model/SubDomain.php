@@ -1,5 +1,7 @@
 <?php
 
+namespace Transip\Model;
+
 /**
  * This class models a subdomain
  *
@@ -8,7 +10,7 @@
  * @author TransIP (support@transip.nl)
  * @version 20131025 10:01
  */
-class Transip_SubDomain
+class SubDomain
 {
 	/**
 	 * SubDomain hostname, must be fully qualified (e.g. test.example.com)

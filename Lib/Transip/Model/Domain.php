@@ -1,5 +1,7 @@
 <?php
 
+namespace Transip\Model;
+
 /**
  * This class models a Domain
  *
@@ -8,7 +10,7 @@
  * @author TransIP (support@transip.nl)
  * @version 20131025 10:01
  */
-class Transip_Domain
+class Domain
 {
 	/**
 	 * The name, including the tld of this domain

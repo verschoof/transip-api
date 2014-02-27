@@ -1,5 +1,7 @@
 <?php
 
+namespace Transip\Model;
+
 /**
  * This class models a ForwardHost
  *
@@ -8,7 +10,7 @@
  * @author TransIP (support@transip.nl)
  * @version 20131025 10:01
  */
-class Transip_Forward
+class Forward
 {
 	const FORWARDMETHOD_DIRECT = 'direct';
 	const FORWARDMETHOD_FRAME = 'frame';

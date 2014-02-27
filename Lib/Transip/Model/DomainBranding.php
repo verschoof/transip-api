@@ -1,5 +1,7 @@
 <?php
 
+namespace Transip\Model;
+
 /**
  * Models branding for a Domain
  *
@@ -8,7 +10,7 @@
  * @author TransIP (support@transip.nl)
  * @version 20131025 10:01
  */
-class Transip_DomainBranding
+class DomainBranding
 {
 	/**
 	 * The company name displayed in transfer-branded e-mails

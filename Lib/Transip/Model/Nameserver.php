@@ -1,5 +1,7 @@
 <?php
 
+namespace Transip\Model;
+
 /**
  * Models A Nameserver
  *
@@ -8,7 +10,7 @@
  * @author TransIP (support@transip.nl)
  * @version 20131025 10:01
  */
-class Transip_Nameserver
+class Nameserver
 {
 	/**
 	 * The hostname of this nameserver

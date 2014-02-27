@@ -1,5 +1,7 @@
 <?php
 
+namespace Transip\Model;
+
 /**
  * This class models a WebHost
  *
@@ -13,7 +15,7 @@
  * @author TransIP (support@transip.nl)
  * @version 20131025 10:01
  */
-class Transip_WebHost
+class WebHost
 {
 	/**
 	 * Domain name of the webhosting package

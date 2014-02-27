@@ -1,5 +1,7 @@
 <?php
 
+namespace Transip\Model;
+
 /**
  * This class models a DomainAction, which holds information
  * about the action being run.
@@ -9,7 +11,7 @@
  * @author TransIP (support@transip.nl)
  * @version 20131025 10:01
  */
-class Transip_DomainAction
+class DomainAction
 {
 	/**
 	 * The name of this DomainAction.

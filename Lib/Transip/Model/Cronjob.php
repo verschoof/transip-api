@@ -1,5 +1,7 @@
 <?php
 
+namespace Transip\Model;
+
 /**
  * This class models a cronjob
  * that will be run on the Webhosting package for a domain name.
@@ -9,7 +11,7 @@
  * @author TransIP (support@transip.nl)
  * @version 20131025 10:01
  */
-class Transip_Cronjob
+class Cronjob
 {
 	/**
 	 * Cronjob name, a user defined name for this cronjob

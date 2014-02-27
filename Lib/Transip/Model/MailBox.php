@@ -1,5 +1,7 @@
 <?php
 
+namespace Transip\Model;
+
 /**
  * This class models a mailbox
  *
@@ -8,7 +10,7 @@
  * @author TransIP (support@transip.nl)
  * @version 20131025 10:01
  */
-class Transip_MailBox
+class MailBox
 {
 	const SPAMCHECKER_STRENGTH_AVERAGE = 'AVERAGE';
 	const SPAMCHECKER_STRENGTH_OFF = 'OFF';
