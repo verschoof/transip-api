@@ -29,13 +29,13 @@ class Webhosting extends SoapClientAbstract
 	public static function _getSoapClient($parameters = array())
 	{
 		$classMap = array(
-			'WebhostingPackage' => 'Transip_WebhostingPackage',
-			'WebHost'           => 'Transip_WebHost',
-			'Cronjob'           => 'Transip_Cronjob',
-			'MailBox'           => 'Transip_MailBox',
-			'Db'                => 'Transip_Db',
-			'MailForward'       => 'Transip_MailForward',
-			'SubDomain'         => 'Transip_SubDomain',
+			'WebhostingPackage' => 'Transip\\Model\\WebhostingPackage',
+			'WebHost'           => 'Transip\\Model\\WebHost',
+			'Cronjob'           => 'Transip\\Model\\Cronjob',
+			'MailBox'           => 'Transip\\Model\\MailBox',
+			'Db'                => 'Transip\\Model\\Db',
+			'MailForward'       => 'Transip\\Model\\MailForward',
+			'SubDomain'         => 'Transip\\Model\\SubDomain',
 		);
 
 		return $this->soapClient($classMap, $parameters);

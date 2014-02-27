@@ -29,7 +29,7 @@ class Forward extends SoapClientAbstract
 	public static function _getSoapClient($parameters = array())
 	{
 		$classMap = array(
-			'Forward' => 'Transip_Forward',
+			'Forward' => 'Transip\\Model\\Forward',
 		);
 
 		return $this->soapClient($classMap, $parameters);

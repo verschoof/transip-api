@@ -26,7 +26,7 @@ class Colocation extends SoapClientAbstract
 	public static function _getSoapClient($parameters = array())
 	{
 		$classMap = array(
-			'DataCenterVisitor' => 'Transip_DataCenterVisitor',
+			'DataCenterVisitor' => 'Transip\\Model\\DataCenterVisitor',
 		);
 
 		return $this->soapClient($classMap, $parameters);
