@@ -8,7 +8,7 @@ composer.json
 ```json
 "require": {
   ...
-  "verschoof/transip-api": "dev-master"
+  "verschoof/transip-api": "1.1.0"
 }
 ```
 
