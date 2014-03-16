@@ -1,6 +1,11 @@
 Wrapper of the transip API
 
 
+###Symfony2
+Do you want to use the TransIp API in your symfony2 project?
+
+https://github.com/verschoof/transip-api-bundle
+
 Installation
 ============
 
