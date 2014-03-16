@@ -21,7 +21,7 @@ class Client
      */
     static public $availableModes = array(
         'readonly',
-        'readwrote'
+        'readwrite'
     );
 
      /**
@@ -99,7 +99,7 @@ class Client
 
     public function setMode($mode)
     {
-        if (in_array($mode, $availableModes)) {
+        if (in_array($mode, $this->availableModes)) {
             $this->mode = $mode;
         }
 
