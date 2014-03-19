@@ -8,9 +8,9 @@ use Transip\Client as Client;
  * This is the base of all the Services
  *
  * @package Transip
- * @class SoapClientAbstract
- * @author TransIP (support@transip.nl)
- * @author Mitchel Verschoof (mitchel@verschoof.net)
+ * @class   SoapClientAbstract
+ * @author  TransIP (support@transip.nl)
+ * @author  Mitchel Verschoof (mitchel@verschoof.net)
  * @version 20131025 10:01
  */
 abstract class SoapClientAbstract
@@ -18,7 +18,7 @@ abstract class SoapClientAbstract
     /** The API version. */
     protected $apiVersion = '4.2';
 
-    /** @var SoapClient  The SoapClient used to perform the SOAP calls. */
+    /** @var \SoapClient  The SoapClient used to perform the SOAP calls. */
     protected $soapClient = null;
 
     /** The client class */
@@ -28,11 +28,14 @@ abstract class SoapClientAbstract
     {
         $this->client = $client;
     }
+
     /**
      * Gets the singleton SoapClient which is used to connect to the TransIP Api.
      *
-     * @param  mixed       $parameters  Parameters.
-     * @return SoapClient               The SoapClient object to which we can connect to the TransIP API
+     * @param array  $classMap
+     * @param  mixed $parameters Parameters.
+     * @throws \Exception
+     * @return \SoapClient               The SoapClient object to which we can connect to the TransIP API
      */
     protected function soapClient(array $classMap, $parameters = array())
     {
@@ -42,10 +45,10 @@ abstract class SoapClientAbstract
             $extensions = get_loaded_extensions();
             $errors     = array();
 
-            if(!class_exists('SoapClient') || !in_array('soap', $extensions)) {
+            if (!class_exists('SoapClient') || !in_array('soap', $extensions)) {
                 $errors[] = 'The PHP SOAP extension doesn\'t seem to be installed. You need to install the PHP SOAP extension. (See: http://www.php.net/manual/en/book.soap.php)';
             }
-            if(!in_array('openssl', $extensions)) {
+            if (!in_array('openssl', $extensions)) {
                 $errors[] = 'The PHP OpenSSL extension doesn\'t seem to be installed. You need to install PHP with the OpenSSL extension. (See: http://www.php.net/manual/en/book.openssl.php)';
             }
             if (!empty($errors)) {
@@ -59,10 +62,10 @@ abstract class SoapClientAbstract
                 'trace'    => false, // can be used for debugging
             );
 
-            $wsdlUri  = "https://{$endpoint}/wsdl/?service=" . $this->service;
+            $wsdlUri = "https://{$endpoint}/wsdl/?service=" . $this->service;
             try {
                 $this->soapClient = new \SoapClient($wsdlUri, $options);
-            } catch(SoapFault $sf) {
+            } catch (\SoapFault $sf) {
                 throw new \Exception("Unable to connect to endpoint '{$endpoint}'");
             }
 
@@ -76,12 +79,22 @@ abstract class SoapClientAbstract
         $this->soapClient->__setCookie('timestamp', $timestamp);
         $this->soapClient->__setCookie('nonce', $nonce);
         $this->soapClient->__setCookie('clientVersion', $this->apiVersion);
-        $this->soapClient->__setCookie('signature', $this->_urlencode($this->_sign(array_merge($parameters, array(
-            '__service'   => $this->service,
-            '__hostname'  => $endpoint,
-            '__timestamp' => $timestamp,
-            '__nonce'     => $nonce
-        )))));
+        $this->soapClient->__setCookie(
+            'signature',
+            $this->_urlencode(
+                $this->_sign(
+                    array_merge(
+                        $parameters,
+                        array(
+                            '__service'   => $this->service,
+                            '__hostname'  => $endpoint,
+                            '__timestamp' => $timestamp,
+                            '__nonce'     => $nonce
+                        )
+                    )
+                )
+            )
+        );
 
         return $this->soapClient;
     }
@@ -89,7 +102,7 @@ abstract class SoapClientAbstract
     /**
      * Calculates the hash to sign our request with based on the given parameters.
      *
-     * @param  mixed   $parameters  The parameters to sign.
+     * @param  mixed $parameters The parameters to sign.
      * @return string               Base64 encoded signing hash.
      */
     protected function _sign($parameters)
@@ -116,7 +129,7 @@ abstract class SoapClientAbstract
     /**
      * Creates a digest of the given data, with an asn1 header.
      *
-     * @param  string  $data  The data to create a digest of.
+     * @param  string $data The data to create a digest of.
      * @return string         The digest of the data, with asn1 header.
      */
     protected function _sha512Asn1($data)
@@ -124,14 +137,14 @@ abstract class SoapClientAbstract
         $digest = hash('sha512', $data, true);
 
         // this ASN1 header is sha512 specific
-        $asn1  = chr(0x30).chr(0x51);
-        $asn1 .= chr(0x30).chr(0x0d);
-        $asn1 .= chr(0x06).chr(0x09);
-        $asn1 .= chr(0x60).chr(0x86).chr(0x48).chr(0x01).chr(0x65);
-        $asn1 .= chr(0x03).chr(0x04);
-        $asn1 .= chr(0x02).chr(0x03);
-        $asn1 .= chr(0x05).chr(0x00);
-        $asn1 .= chr(0x04).chr(0x40);
+        $asn1 = chr(0x30) . chr(0x51);
+        $asn1 .= chr(0x30) . chr(0x0d);
+        $asn1 .= chr(0x06) . chr(0x09);
+        $asn1 .= chr(0x60) . chr(0x86) . chr(0x48) . chr(0x01) . chr(0x65);
+        $asn1 .= chr(0x03) . chr(0x04);
+        $asn1 .= chr(0x02) . chr(0x03);
+        $asn1 .= chr(0x05) . chr(0x00);
+        $asn1 .= chr(0x04) . chr(0x40);
         $asn1 .= $digest;
 
         return $asn1;
@@ -140,18 +153,19 @@ abstract class SoapClientAbstract
     /**
      * Encodes the given paramaters into a url encoded string based upon RFC 3986.
      *
-     * @param  mixed   $parameters  The parameters to encode.
-     * @param  string  $keyPrefix   Key prefix.
+     * @param  mixed  $parameters The parameters to encode.
+     * @param  string $keyPrefix  Key prefix.
      * @return string               The given parameters encoded according to RFC 3986.
      */
     protected function _encodeParameters($parameters, $keyPrefix = null)
     {
-        if(!is_array($parameters) && !is_object($parameters))
+        if (!is_array($parameters) && !is_object($parameters)) {
             return $this->_urlencode($parameters);
+        }
 
         $encodedData = array();
 
-        foreach($parameters as $key => $value) {
+        foreach ($parameters as $key => $value) {
             $encodedKey = is_null($keyPrefix)
                 ? $this->_urlencode($key)
                 : $keyPrefix . '[' . $this->_urlencode($key) . ']';

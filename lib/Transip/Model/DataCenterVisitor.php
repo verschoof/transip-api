@@ -7,37 +7,37 @@ namespace Transip\Model;
  * by ColoService::requestAccess() in an array of all visitors that are granted access.
  *
  * @package Transip
- * @class DataCenterVisitor
- * @author TransIP (support@transip.nl)
+ * @class   DataCenterVisitor
+ * @author  TransIP (support@transip.nl)
  * @version 20131025 10:01
  */
 class DataCenterVisitor
 {
-	/**
-	 * The name of the visitor
-	 *
-	 * @var string
-	 */
-	public $name;
+    /**
+     * The name of the visitor
+     *
+     * @var string
+     */
+    public $name;
 
-	/**
-	 * The reservation number of the visitor.
-	 *
-	 * @var string
-	 */
-	public $reservationNumber;
+    /**
+     * The reservation number of the visitor.
+     *
+     * @var string
+     */
+    public $reservationNumber;
 
-	/**
-	 * The accesscode of the visitor.
-	 *
-	 * @var string
-	 */
-	public $accessCode;
+    /**
+     * The accesscode of the visitor.
+     *
+     * @var string
+     */
+    public $accessCode;
 
-	/**
-	 * true iff this visitor been registered before at the datacenter. if true, does not need the accesscode
-	 *
-	 * @var boolean
-	 */
-	public $hasBeenRegisteredBefore;
+    /**
+     * true iff this visitor been registered before at the datacenter. if true, does not need the accesscode
+     *
+     * @var boolean
+     */
+    public $hasBeenRegisteredBefore;
 }

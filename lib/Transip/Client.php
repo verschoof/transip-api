@@ -24,7 +24,7 @@ class Client
         'readwrite'
     );
 
-     /**
+    /**
      * TransIP API endpoint to connect to.
      *
      * e.g.:
@@ -104,6 +104,5 @@ class Client
         }
 
         throw new Exception("$mode is not a available mode for this API.");
-
     }
 }

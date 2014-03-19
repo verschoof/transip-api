@@ -6,41 +6,41 @@ namespace Transip\Model;
  * This class holds the data for one result item of a multi availability check.
  *
  * @package Transip
- * @class DomainCheckResult
- * @author TransIP (support@transip.nl)
+ * @class   DomainCheckResult
+ * @author  TransIP (support@transip.nl)
  * @version 20131025 10:01
  */
 class DomainCheckResult
 {
-	const STATUS_INYOURACCOUNT = 'inyouraccount';
-	const STATUS_UNAVAILABLE = 'unavailable';
-	const STATUS_NOTFREE = 'notfree';
-	const STATUS_FREE = 'free';
-	const STATUS_INTERNALPULL = 'internalpull';
-	const STATUS_INTERNALPUSH = 'internalpush';
-	const ACTION_REGISTER = 'register';
-	const ACTION_TRANSFER = 'transfer';
-	const ACTION_INTERNALPULL = 'internalpull';
-	const ACTION_INTERNALPUSH = 'internalpush';
+    const STATUS_INYOURACCOUNT = 'inyouraccount';
+    const STATUS_UNAVAILABLE   = 'unavailable';
+    const STATUS_NOTFREE       = 'notfree';
+    const STATUS_FREE          = 'free';
+    const STATUS_INTERNALPULL  = 'internalpull';
+    const STATUS_INTERNALPUSH  = 'internalpush';
+    const ACTION_REGISTER      = 'register';
+    const ACTION_TRANSFER      = 'transfer';
+    const ACTION_INTERNALPULL  = 'internalpull';
+    const ACTION_INTERNALPUSH  = 'internalpush';
 
-	/**
-	 * The name of the Domain for which we have a status in this object
-	 *
-	 * @var string;
-	 */
-	public $domainName;
+    /**
+     * The name of the Domain for which we have a status in this object
+     *
+     * @var string;
+     */
+    public $domainName;
 
-	/**
-	 * The status for this domain, one of the Transip_DomainService::AVAILABILITY_* constants.
-	 *
-	 * @var string
-	 */
-	public $status;
+    /**
+     * The status for this domain, one of the Transip_DomainService::AVAILABILITY_* constants.
+     *
+     * @var string
+     */
+    public $status;
 
-	/**
-	 * List of available actions to perform on this domain
-	 *
-	 * @var string[]
-	 */
-	public $actions;
+    /**
+     * List of available actions to perform on this domain
+     *
+     * @var string[]
+     */
+    public $actions;
 }

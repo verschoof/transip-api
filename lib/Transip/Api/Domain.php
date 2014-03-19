@@ -6,9 +6,9 @@ namespace Transip\Api;
  * This is the API endpoint for the DomainService
  *
  * @package Transip
- * @class DomainService
- * @author TransIP (support@transip.nl)
- * @author Mitchel Verschoof (mitchel@verschoof.net)
+ * @class   DomainService
+ * @author  TransIP (support@transip.nl)
+ * @author  Mitchel Verschoof (mitchel@verschoof.net)
  * @version 20131025 10:01
  */
 class Domain extends SoapClientAbstract
@@ -31,10 +31,10 @@ class Domain extends SoapClientAbstract
     /**
      * Gets the singleton SoapClient which is used to connect to the TransIP Api.
      *
-     * @param  mixed       $parameters  Parameters.
-     * @return SoapClient               The SoapClient object to which we can connect to the TransIP API
+     * @param  mixed $parameters Parameters.
+     * @return \SoapClient               The SoapClient object to which we can connect to the TransIP API
      */
-    public function getSoapClient($parameters = array())
+    protected function getSoapClient($parameters = array())
     {
         $classMap = array(
             'DomainCheckResult' => 'Transip\\Model\\DomainCheckResult',
@@ -54,9 +54,8 @@ class Domain extends SoapClientAbstract
      * Checks the availability of multiple domains.
      *
      * @param string[] $domainNames The domain names to check for availability. A maximum of 20 domainNames at once
-     * @example examples/DomainService-batchCheckAvailability.php
      * @throws ApiException
-     * @return Transip_DomainCheckResult[] A list of DomainCheckResult objects, holding the domainName and the status per result.
+     * @return \Transip\Model\DomainCheckResult[] A list of DomainCheckResult objects, holding the domainName and the status per result.
      */
     public function batchCheckAvailability($domainNames)
     {
@@ -68,7 +67,6 @@ class Domain extends SoapClientAbstract
      *
      * @param string $domainName The domain name to check for availability.
      * @return string the availability status of the domain name:
-     * @example examples/DomainService-checkAvailability.php
      */
     public function checkAvailability($domainName)
     {
@@ -80,7 +78,6 @@ class Domain extends SoapClientAbstract
      *
      * @param string $domainName the domain name to get the whois for
      * @return string the whois data for the domain
-     * @example examples/DomainService-getWhois.php
      */
     public function getWhois($domainName)
     {
@@ -91,7 +88,6 @@ class Domain extends SoapClientAbstract
      * Gets the names of all domains in your account.
      *
      * @return string[] A list of all domains in your account
-     * @example examples/DomainService-getDomainNames.php
      */
     public function getDomainNames()
     {
@@ -102,9 +98,8 @@ class Domain extends SoapClientAbstract
      * Get information about a domainName.
      *
      * @param string $domainName The domainName to get the information for.
-     * @example examples/DomainService-DomainService-getInfo.php
      * @throws ApiException  If the Domain could not be found.
-     * @return Transip_Domain A Domain object holding the data for the requested domainName.
+     * @return \Transip\Model\Domain A Domain object holding the data for the requested domainName.
      */
     public function getInfo($domainName)
     {
@@ -116,7 +111,7 @@ class Domain extends SoapClientAbstract
      *
      * @param string[] $domainNames A list of Domain names you want information for.
      * @throws Exception     If something else went wrong.
-     * @return Transip_Domain[] Domain objects.
+     * @return \Transip\Model\Domain[] Domain objects.
      */
     public function batchGetInfo($domainNames)
     {
@@ -129,7 +124,6 @@ class Domain extends SoapClientAbstract
      * @param string $domainName the domainName to get the authcode for
      * @deprecated
      * @return string the authentication code for a domain name
-     * @example examples/DomainService-DomainService-getAuthCode.php
      */
     public function getAuthCode($domainName)
     {
@@ -151,12 +145,11 @@ class Domain extends SoapClientAbstract
     /**
      * Registers a domain name, will automatically create and sign a proposition for it
      *
-     * @param Transip_Domain $domain The Domain object holding information about the domain that needs to be registered.
+     * @param \Transip\Model\Domain $domain The Domain object holding information about the domain that needs to be registered.
      * @requires readwrite mode
-     * @example examples/DomainService-DomainService-register-whois.php
      * @throws ApiException
      */
-    public function register($domain)
+    public function register(\Transip\Model\Domain $domain)
     {
         return $this->getSoapClient(array_merge(array($domain), array('__method' => 'register')))->register($domain);
     }
@@ -166,9 +159,8 @@ class Domain extends SoapClientAbstract
      * Please note that domains with webhosting cannot be cancelled through the API
      *
      * @param string $domainName The domainname that needs to be cancelled.
-     * @param string $endTime The time to cancel the domain (DomainService::CANCELLATIONTIME_END (end of contract)
+     * @param string $endTime    The time to cancel the domain (Domain::CANCELLATIONTIME_END (end of contract)
      * @requires readwrite mode
-     * @example examples/DomainService-DomainService-cancel.php
      * @throws ApiException
      */
     public function cancel($domainName, $endTime)
@@ -179,12 +171,11 @@ class Domain extends SoapClientAbstract
     /**
      * Transfers a domain with changing the owner, not all TLDs support this (e.g. nl)
      *
-     * @param Transip_Domain $domain the Domain object holding information about the domain that needs to be transfered
-     * @param string $authCode the authorization code for domains needing this for transfers (e.g. .com or .org transfers). Leave empty when n/a.
+     * @param \Transip\Model\Domain $domain   the Domain object holding information about the domain that needs to be transfered
+     * @param string                $authCode the authorization code for domains needing this for transfers (e.g. .com or .org transfers). Leave empty when n/a.
      * @requires readwrite mode
-     * @example examples/DomainService-DomainService-transfer.php
      */
-    public function transferWithOwnerChange($domain, $authCode)
+    public function transferWithOwnerChange(\Transip\Model\Domain $domain, $authCode)
     {
         return $this->getSoapClient(array_merge(array($domain, $authCode), array('__method' => 'transferWithOwnerChange')))->transferWithOwnerChange($domain, $authCode);
     }
@@ -192,12 +183,11 @@ class Domain extends SoapClientAbstract
     /**
      * Transfers a domain without changing the owner
      *
-     * @param Transip_Domain $domain the Domain object holding information about the domain that needs to be transfered
-     * @param string $authCode the authorization code for domains needing this for transfers (e.g. .com or .org transfers). Leave empty when n/a.
+     * @param \Transip\Model\Domain $domain   the Domain object holding information about the domain that needs to be transfered
+     * @param string                $authCode the authorization code for domains needing this for transfers (e.g. .com or .org transfers). Leave empty when n/a.
      * @requires readwrite mode
-     * @example examples/DomainService-DomainService-transfer.php
      */
-    public function transferWithoutOwnerChange($domain, $authCode)
+    public function transferWithoutOwnerChange(\Transip\Model\Domain $domain, $authCode)
     {
         return $this->getSoapClient(array_merge(array($domain, $authCode), array('__method' => 'transferWithoutOwnerChange')))->transferWithoutOwnerChange($domain, $authCode);
     }
@@ -205,12 +195,18 @@ class Domain extends SoapClientAbstract
     /**
      * Starts a nameserver change for this domain, will replace all existing nameservers with the new nameservers
      *
-     * @param string $domainName the domainName to change the nameservers for
-     * @param Transip_Nameserver[] $nameservers the list of new nameservers for this domain
-     * @example examples/DomainService-DomainService-setNameservers.php
+     * @param string                      $domainName  the domainName to change the nameservers for
+     * @param \Transip\Model\Nameserver[] $nameservers the list of new nameservers for this domain
+     * @throws \RuntimeException
      */
     public function setNameservers($domainName, $nameservers)
     {
+        foreach ($nameservers as $nameserver) {
+            if (!$nameserver instanceof \Transip\Model\Nameserver) {
+                throw new \RuntimeException(sprintf('nameserver is not an instance of %s', '\\Transip\\Model\\Nameserver'));
+            }
+        }
+
         return $this->getSoapClient(array_merge(array($domainName, $nameservers), array('__method' => 'setNameservers')))->setNameservers($domainName, $nameservers);
     }
 
@@ -218,7 +214,6 @@ class Domain extends SoapClientAbstract
      * Lock this domain in real time
      *
      * @param string $domainName the domainName to set the lock for
-     * @example examples/DomainService-DomainService-setLock.php
      */
     public function setLock($domainName)
     {
@@ -229,7 +224,6 @@ class Domain extends SoapClientAbstract
      * unlocks this domain in real time
      *
      * @param string $domainName the domainName to unlock
-     * @example examples/DomainService-DomainService-setLock.php
      */
     public function unsetLock($domainName)
     {
@@ -239,12 +233,18 @@ class Domain extends SoapClientAbstract
     /**
      * Sets the DnEntries for this Domain, will replace all existing dns entries with the new entries
      *
-     * @param string $domainName the domainName to change the dns entries for
-     * @param Transip_DnsEntry[] $dnsEntries the list of new DnsEntries for this domain
-     * @example examples/DomainService-DomainService-setDnsEntries.php
+     * @param string                    $domainName the domainName to change the dns entries for
+     * @param \Transip\Model\DnsEntry[] $dnsEntries the list of new DnsEntries for this domain
+     * @throws \RuntimeException
      */
     public function setDnsEntries($domainName, $dnsEntries)
     {
+        foreach ($dnsEntries as $dnsEntry) {
+            if (!$dnsEntry instanceof \Transip\Model\DnsEntry) {
+                throw new \RuntimeException(sprintf('DnsEntry is not instance of %s', '\\Transip\\Model\\DnsEntry'));
+            }
+        }
+
         return $this->getSoapClient(array_merge(array($domainName, $dnsEntries), array('__method' => 'setDnsEntries')))->setDnsEntries($domainName, $dnsEntries);
     }
 
@@ -254,12 +254,11 @@ class Domain extends SoapClientAbstract
      * .be
      * .eu
      *
-     * @param string $domainName the domainName to change the owner for
-     * @param Transip_WhoisContact $registrantWhoisContact the new contact data for this
-     * @example examples/DomainService-DomainService-setOwner.php
+     * @param string                      $domainName             the domainName to change the owner for
+     * @param \Transip\Model\WhoisContact $registrantWhoisContact the new contact data for this
      * @throws ApiException
      */
-    public function setOwner($domainName, $registrantWhoisContact)
+    public function setOwner($domainName, \Transip\Model\WhoisContact $registrantWhoisContact)
     {
         return $this->getSoapClient(array_merge(array($domainName, $registrantWhoisContact), array('__method' => 'setOwner')))->setOwner($domainName, $registrantWhoisContact);
     }
@@ -267,20 +266,25 @@ class Domain extends SoapClientAbstract
     /**
      * Starts a contact change of a domain, this will replace all existing contacts
      *
-     * @param string $domainName the domainName to change the contacts for
-     * @param Transip_WhoisContact[] $contacts the list of new contacts for this domain
-     * @example examples/DomainService-DomainService-setContacts.php
+     * @param string                        $domainName the domainName to change the contacts for
+     * @param \Transip\Model\WhoisContact[] $contacts   the list of new contacts for this domain
+     * @throws \RuntimeException
      */
     public function setContacts($domainName, $contacts)
     {
+        foreach ($contacts as $contact) {
+            if (!$contact instanceof \Transip\Model\WhoisContact) {
+                throw new \RuntimeException(sprintf('Contact is not an instance of %s', '\\Transip\\Model\\WhoisContact'));
+            }
+        }
+
         return $this->getSoapClient(array_merge(array($domainName, $contacts), array('__method' => 'setContacts')))->setContacts($domainName, $contacts);
     }
 
     /**
      * Get TransIP supported TLDs
      *
-     * @return Transip_Tld[] Array of Tld objects
-     * @example examples/DomainService-DomainService-getAllTldInfos.php
+     * @return \Transip\Model\Tld[] Array of Tld objects
      */
     public function getAllTldInfos()
     {
@@ -293,7 +297,7 @@ class Domain extends SoapClientAbstract
      * @param string $tldName The tld to get information about.
      * @example examples/DomainService-DomainService-getAllTldInfos.php
      * @throws ApiException  If the TLD could not be found.
-     * @return Transip_Tld Tld object with info about this Tld
+     * @return \Transip\Model\Tld Tld object with info about this Tld
      */
     public function getTldInfo($tldName)
     {
@@ -304,7 +308,7 @@ class Domain extends SoapClientAbstract
      * Gets info about the action this domain is currently running
      *
      * @param string $domainName Name of the domain
-     * @return Transip_DomainAction if this domain is currently running an action, a corresponding DomainAction with info about the action will be returned.
+     * @return \Transip\Model\DomainAction if this domain is currently running an action, a corresponding DomainAction with info about the action will be returned.
      * @example examples/DomainService-DomainService-domainActions.php
      */
     public function getCurrentDomainAction($domainName)
@@ -317,11 +321,11 @@ class Domain extends SoapClientAbstract
      * the name of the Domain, the nameserver, contacts, dnsEntries fields contain the new data for this domain.
      * Set a field to null to not change the data.
      *
-     * @param Transip_Domain $domain The domain with data to retry
+     * @param \Transip\Model\Domain $domain The domain with data to retry
      * @example examples/DomainService-DomainService-domainActions.php
      * @throws ApiException
      */
-    public function retryCurrentDomainActionWithNewData($domain)
+    public function retryCurrentDomainActionWithNewData(\Transip\Model\Domain $domain)
     {
         return $this->getSoapClient(array_merge(array($domain), array('__method' => 'retryCurrentDomainActionWithNewData')))->retryCurrentDomainActionWithNewData($domain);
     }
@@ -329,12 +333,10 @@ class Domain extends SoapClientAbstract
     /**
      * Retry a transfer action with a new authcode
      *
-     * @param Transip_Domain $domain The domain to try the transfer with a different authcode for
-     * @param string $newAuthCode New authorization code to try
-     * @example examples/DomainService-DomainService-domainActions.php
-     * @throws ApiException
+     * @param \Transip\Model\Domain $domain      The domain to try the transfer with a different authcode for
+     * @param string                $newAuthCode New authorization code to try
      */
-    public function retryTransferWithDifferentAuthCode($domain, $newAuthCode)
+    public function retryTransferWithDifferentAuthCode(\Transip\Model\Domain $domain, $newAuthCode)
     {
         return $this->getSoapClient(array_merge(array($domain, $newAuthCode), array('__method' => 'retryTransferWithDifferentAuthCode')))->retryTransferWithDifferentAuthCode($domain, $newAuthCode);
     }
@@ -342,11 +344,11 @@ class Domain extends SoapClientAbstract
     /**
      * Cancels a failed domain action
      *
-     * @param Transip_Domain $domain the domain to cancel the action for
+     * @param \Transip\Model\Domain $domain the domain to cancel the action for
      * @example examples/DomainService-DomainService-domainActions.php
      * @throws ApiException
      */
-    public function cancelDomainAction($domain)
+    public function cancelDomainAction(\Transip\Model\Domain $domain)
     {
         return $this->getSoapClient(array_merge(array($domain), array('__method' => 'cancelDomainAction')))->cancelDomainAction($domain);
     }
