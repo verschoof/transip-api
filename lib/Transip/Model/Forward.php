@@ -84,18 +84,18 @@ class Forward
      * @param string  $forwardMethod     OPTIONAL Method of forwarding; either Forward::FORWARDMETHOD_DIRECT or Forward::FORWARDMETHOD_FRAME
      * @param string  $frameTitle        OPTIONAL Frame title if forwardMethod is set to Forward::FORWARDMETHOD_FRAME
      * @param string  $frameIcon         OPTIONAL Frame favicon if forwardMethod is set to Forward::FORWARDMETHOD_FRAME
-     * @param boolean $forwardEveryThing OPTIONAL Set to true to forward to preserve the URL info after the domain.
+     * @param boolean $forwardEverything OPTIONAL Set to true to forward to preserve the URL info after the domain.
      * @param string  $forwardSubdomains OPTIONAL Set to true if subdomains should be appended to the target URL.
      * @param string  $forwardEmailTo    OPTIONAL The e-mailaddress all emails to this forward are forwarded to.
      */
-    public function __construct($domainName, $forwardTo, $forwardMethod = 'direct', $frameTitle = '', $frameIcon = '', $forwardEveryThing = true, $forwardSubdomains = '', $forwardEmailTo = '')
+    public function __construct($domainName, $forwardTo, $forwardMethod = 'direct', $frameTitle = '', $frameIcon = '', $forwardEverything = true, $forwardSubdomains = '', $forwardEmailTo = '')
     {
         $this->domainName        = $domainName;
         $this->forwardTo         = $forwardTo;
         $this->forwardMethod     = $forwardMethod;
         $this->frameTitle        = $frameTitle;
         $this->frameIcon         = $frameIcon;
-        $this->forwardEveryThing = $forwardEveryThing;
+        $this->forwardEverything = $forwardEverything;
         $this->forwardSubdomains = $forwardSubdomains;
         $this->forwardEmailTo    = $forwardEmailTo;
     }
