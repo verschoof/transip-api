@@ -4,6 +4,11 @@ namespace Transip;
 
 use Transip\Exception\InvalidArgumentException;
 
+/**
+ * Class Client
+ *
+ * @package Transip
+ */
 class Client
 {
     /**
@@ -44,16 +49,29 @@ class Client
      */
     protected $privateKey;
 
-    public function __construct($login, $privateKey, $debug = false)
+    /**
+     * @param string $login
+     * @param string $privateKey
+     * @param bool   $debug
+     * @param string $endpoint
+     */
+    public function __construct($login, $privateKey, $debug = false, $endpoint = 'api.transip.nl')
     {
         $this->login      = $login;
         $this->privateKey = $privateKey;
+        $this->endpoint   = $endpoint;
 
         if ($debug) {
             $this->mode = 'readonly';
         }
     }
 
+    /**
+     * @param string $name
+     *
+     * @return Api\Colocation|Api\Domain|Api\Forward|Api\Webhosting
+     * @throws Exception\InvalidArgumentException
+     */
     public function api($name)
     {
         switch ($name) {
@@ -66,7 +84,7 @@ class Client
             case 'forward':
                 $api = new Api\Forward($this);
                 break;
-            case 'Colocation':
+            case 'colocation':
                 $api = new Api\Colocation($this);
                 break;
 
@@ -77,37 +95,57 @@ class Client
         return $api;
     }
 
+    /**
+     * @return string
+     */
     public function getEndpoint()
     {
         return $this->endpoint;
     }
 
+    /**
+     * @param string $endpoint
+     */
     public function setEndpoint($endpoint)
     {
         $this->endpoint = $endpoint;
     }
 
+    /**
+     * @return string
+     */
     public function getLogin()
     {
         return $this->login;
     }
 
+    /**
+     * @return string
+     */
     public function getPrivateKey()
     {
         return $this->privateKey;
     }
 
+    /**
+     * @return string
+     */
     public function getMode()
     {
         return $this->mode;
     }
 
+    /**
+     * @param string $mode
+     *
+     * @throws \Exception
+     */
     public function setMode($mode)
     {
         if (in_array($mode, $this->availableModes)) {
             $this->mode = $mode;
         }
 
-        throw new Exception("$mode is not a available mode for this API.");
+        throw new \Exception("$mode is not a available mode for this API.");
     }
 }
