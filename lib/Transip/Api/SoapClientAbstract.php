@@ -39,7 +39,7 @@ abstract class SoapClientAbstract
      */
     protected function soapClient(array $classMap, $parameters = array())
     {
-        $endpoint = $this->client->getEndPoint();
+        $endpoint = $this->client->getEndpoint();
 
         if ($this->soapClient === null) {
             $extensions = get_loaded_extensions();

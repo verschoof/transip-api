@@ -77,9 +77,14 @@ class Client
         return $api;
     }
 
-    public function getEndPoint()
+    public function getEndpoint()
     {
         return $this->endpoint;
+    }
+
+    public function setEndpoint($endpoint)
+    {
+        $this->endpoint = $endpoint;
     }
 
     public function getLogin()
