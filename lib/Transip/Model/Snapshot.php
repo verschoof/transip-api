@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Model;
+namespace Transip\Model;
 
 /**
  * This class models a vps snapshot
