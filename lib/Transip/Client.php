@@ -87,6 +87,9 @@ class Client
             case 'colocation':
                 $api = new Api\Colocation($this);
                 break;
+	        case 'vps':
+		        $api = new Api\Vps($this);
+		        break;
 
             default:
                 throw new InvalidArgumentException(sprintf('Undefined api instance called: "%s"', $name));
