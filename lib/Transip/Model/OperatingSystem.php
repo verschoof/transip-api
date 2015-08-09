@@ -16,26 +16,26 @@ class OperatingSystem
 	 *
 	 * @var string
 	 */
-	public $name = '';
+	public $name;
 
 	/**
 	 * Description
 	 *
 	 * @var string
 	 */
-	public $description = '';
+	public $description;
 
 	/**
 	 * The snapshot creation date
 	 *
 	 * @var string
 	 */
-	public $dateTimeCreate = '';
+	public $dateTimeCreate;
 
 	/**
 	 * Is a preinstallable image
 	 *
 	 * @var boolean
 	 */
-	public $isPreinstallableImage = false;
+	public $isPreinstallableImage;
 }

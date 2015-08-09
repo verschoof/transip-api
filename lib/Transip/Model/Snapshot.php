@@ -16,19 +16,19 @@ class Snapshot
 	 *
 	 * @var string
 	 */
-	public $name = '';
+	public $name;
 
 	/**
 	 * The snapshot description
 	 *
 	 * @var string
 	 */
-	public $description = '';
+	public $description;
 
 	/**
 	 * The snapshot creation date
 	 *
 	 * @var string
 	 */
-	public $dateTimeCreate = '';
+	public $dateTimeCreate;
 }

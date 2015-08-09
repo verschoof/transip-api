@@ -16,5 +16,5 @@ class PrivateNetwork
 	 *
 	 * @var string
 	 */
-	public $name = '';
+	public $name;
 }
