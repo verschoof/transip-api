@@ -11,24 +11,24 @@ namespace Transip\Model;
  */
 class Snapshot
 {
-	/**
-	 * The snapshot name
-	 *
-	 * @var string
-	 */
-	public $name;
+    /**
+     * The snapshot name
+     *
+     * @var string
+     */
+    public $name;
 
-	/**
-	 * The snapshot description
-	 *
-	 * @var string
-	 */
-	public $description;
+    /**
+     * The snapshot description
+     *
+     * @var string
+     */
+    public $description;
 
-	/**
-	 * The snapshot creation date
-	 *
-	 * @var string
-	 */
-	public $dateTimeCreate;
+    /**
+     * The snapshot creation date
+     *
+     * @var string
+     */
+    public $dateTimeCreate;
 }

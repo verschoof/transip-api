@@ -11,10 +11,10 @@ namespace Transip\Model;
  */
 class PrivateNetwork
 {
-	/**
-	 * The private network name
-	 *
-	 * @var string
-	 */
-	public $name;
+    /**
+     * The private network name
+     *
+     * @var string
+     */
+    public $name;
 }
