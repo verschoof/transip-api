@@ -377,6 +377,19 @@ class Vps extends SoapClientAbstract
     }
 
     /**
+     * Install an operating system on a vps with a unattended installfile.
+     *
+     * @param string $vpsName The name of the VPS
+     * @param string $operatingSystemName The name of the operating to install
+     * @param string $base64InstallText base64_encoded preseed/kickstart text
+     * @throws ApiException
+     */
+    public function installOperatingSystemUnattended($vpsName, $operatingSystemName, $base64InstallText)
+    {
+        return $this->getSoapClient(array_merge(array($vpsName, $operatingSystemName, $base64InstallText), array('__method' => 'installOperatingSystemUnattended')))->installOperatingSystemUnattended($vpsName, $operatingSystemName, $base64InstallText);
+    }
+
+    /**
      * Get Ips for a specific Vps
      *
      * @param string $vpsName The name of the Vps
