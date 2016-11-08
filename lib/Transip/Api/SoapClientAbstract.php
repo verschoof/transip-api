@@ -62,6 +62,20 @@ abstract class SoapClientAbstract
                 'trace'    => false, // can be used for debugging
             );
 
+            $options = array_merge($options, $this->client->getSoapOptions());
+
+            if ($options['proxy_host']) {
+                $streamOptions = array(
+                    'ssl' => array(
+                        'SNI_enabled'       => true,
+                        'SNI_server_name'   => $endpoint
+                    )
+                );
+                $streamContext = stream_context_create($streamOptions);
+
+                $options['stream_context']  = $streamContext;
+            }
+
             $wsdlUri = "https://{$endpoint}/wsdl/?service=" . $this->service;
             try {
                 $this->soapClient = new \SoapClient($wsdlUri, $options);
