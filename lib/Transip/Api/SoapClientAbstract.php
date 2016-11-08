@@ -64,7 +64,7 @@ abstract class SoapClientAbstract
 
             $options = array_merge($options, $this->client->getSoapOptions());
 
-            if ($options['proxy_host']) {
+            if (isset($options['proxy_host'])) {
                 $streamOptions = array(
                     'ssl' => array(
                         'SNI_enabled'       => true,
