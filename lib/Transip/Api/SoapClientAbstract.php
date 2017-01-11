@@ -64,17 +64,15 @@ abstract class SoapClientAbstract
 
             $options = array_merge($options, $this->client->getSoapOptions());
 
-            if (isset($options['proxy_host'])) {
-                $streamOptions = array(
-                    'ssl' => array(
-                        'SNI_enabled'       => true,
-                        'SNI_server_name'   => $endpoint
-                    )
-                );
-                $streamContext = stream_context_create($streamOptions);
-
-                $options['stream_context']  = $streamContext;
-            }
+            $streamOptions = array(
+                'ssl' => array(
+                    'SNI_enabled'       => true,
+                    'SNI_server_name'   => $endpoint,
+                    'peer_name'         => $endpoint,
+                )
+            );
+            $streamContext = stream_context_create($streamOptions);
+            $options['stream_context']  = $streamContext;
 
             $wsdlUri = "https://{$endpoint}/wsdl/?service=" . $this->service;
             try {
