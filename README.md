@@ -1,3 +1,8 @@
+**DEPRECATED**
+==============
+INFO: https://www.transip.nl/nieuws/de-nieuwe-transip-rest-api-is-live/
+<br><br><br><br>
+
 Wrapper of the transip API
 
 
