@@ -50,6 +50,11 @@ class Client
     protected $privateKey;
 
     /**
+     * Option to add aditional options to the SoapClient(http://php.net/manual/en/soapclient.soapclient.php)
+     */
+    protected $soapOptions = array();
+
+    /**
      * @param string $login
      * @param string $privateKey
      * @param bool   $debug
@@ -150,5 +155,21 @@ class Client
         }
 
         throw new \Exception("$mode is not a available mode for this API.");
+    }
+
+    /**
+     * @return array
+     */
+    public function getSoapOptions()
+    {
+        return $this->soapOptions;
+    }
+
+    /**
+     * @param array $soapOptions
+     */
+    public function setSoapOptions($soapOptions)
+    {
+        $this->soapOptions = $soapOptions;
     }
 }
